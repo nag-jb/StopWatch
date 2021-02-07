@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet var label: UILabel!
-    @IBOutlet var perfect: UILabel!
+    @IBOutlet var hanteiLabel: UILabel!
     
     var count: Float = 0.0
     
@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        perfect.isHidden = true
     }
     
     @objc func up(){
@@ -33,34 +32,36 @@ class ViewController: UIViewController {
 //            タイマーが動作していなかったら作動
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up),userInfo: nil,repeats: true)
         }
-        perfect.isHidden = true
+        hanteiLabel.text = ""
     }
     
     @IBAction func stop(){
         if timer.isValid{
 //            タイマーが動作していたら停止する
             timer.invalidate()
-//            hanteiメソッドを呼び出し結果を表示
-             self.hantei()
         }
+        self.hantei()
     }
     
     @IBAction func reset(){
 //        タイマーが動作していたら停止させ0にする
         if timer.isValid{
             timer.invalidate()
-            
         }
+//        カウントを初期化する
         count = 0.0
         label.text = String(format: "%.2f", count)
-        perfect.isHidden = true
+
     }
-    
-    @IBAction func hantei(){
+     func hantei(){
         if count >= 9.80 && count <= 10.20{
-            perfect.isHidden = false
-        }else{
-            perfect.isHidden = true
+            hanteiLabel.text = "PERFECT"
+        }else if count >= 9.70 && count <= 10.30{
+            hanteiLabel.text = "GREAT"
+        }else if count >= 9.50 && count <= 10.50{
+            hanteiLabel.text = "GOOD"
+        } else{
+            hanteiLabel.text = "BAD"
         }
     }
     

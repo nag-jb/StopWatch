@@ -83,8 +83,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="hanteiLabel" destination="uBE-bx-krG" id="OTC-gZ-If0"/>
                         <outlet property="label" destination="dGT-44-gzv" id="pNX-f2-XDU"/>
-                        <outlet property="perfect" destination="uBE-bx-krG" id="dzN-Ju-NGx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
